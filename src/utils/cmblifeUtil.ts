@@ -283,7 +283,28 @@ const cmblife = {
         encodeURIComponent(window.location.href);
       window.location.href = redirectUrl;
     }
+  },
+
+  /**
+   * 唤起分享
+   * @param setParams 分享参数 可选，填写的话需要cmblife配置
+   */
+  share: function (setParams?: object) {
+    if (!this.isCmblife()) {
+      return;
+    }
+    const params: object = Object.assign({ share: '自定义字段' }, setParams)
+    const paramsStr: string = JSON.stringify(params)
+
+    const url: string = `cmblife://shareV2?jsCallback=${encodeURIComponent(
+      'javascript: cmbShareCallback'
+    )}
+    &sceneNo=${encodeURIComponent(
+      `${import.meta.env.VITE_APP_SHARE_ID}`
+    )}&params=${encodeURIComponent(paramsStr)}`
+    this.executeProtocol(url)
   }
+
 };
 /* window.addEventListener(
   "message",
