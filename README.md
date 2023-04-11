@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2023-03-17 09:30:38
  * @LastEditors: dushuai
- * @LastEditTime: 2023-04-11 14:28:38
+ * @LastEditTime: 2023-04-11 14:47:16
  * @description: 框架说明
 -->
 # 项目名称
@@ -21,7 +21,7 @@
 pnpm install
 ```
 
-#### 开发环境运行
+#### 运行
 ```
 npm run dev
 ```
@@ -51,7 +51,8 @@ npm run dev
 │     └─img            	          静态图片文件目录
 │     └─resource                  序列帧文件目录
 │  └─axios            	          封装axios请求
-|     └─requestCancel             重复请求取消方法文件
+|     └─requestCancel.ts          重复请求取消方法
+|     └─requestCode.ts            统一处理请求状态码方法
 │  └─common            	          公共文件
 │     └─style            	      公共样式文件目录
 |     └─ts                        公共函数的目录
@@ -145,6 +146,7 @@ VITE_APP_TITLE = "项目名称"
 
 ## 运行以及打包
 
+```
 npm run dev    本地启动项目
 
 npm run sit    测试环境打包
@@ -154,3 +156,4 @@ npm run uat    预生产环境打包
 npm run prod   生成环境打包
 
 npm run getImg 自动加载assets/img/下静态图片（图片懒加载使用），环境打包命令会自动执行,无需重复执行
+```
