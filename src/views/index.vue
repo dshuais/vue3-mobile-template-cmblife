@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2023-03-14 11:32:51
  * @LastEditors: dushuai
- * @LastEditTime: 2023-04-10 17:35:44
+ * @LastEditTime: 2023-04-11 11:58:27
  * @description: Index
 -->
 <script setup lang="ts">
@@ -11,17 +11,15 @@ import { useAppStore } from "@/stores/app";
 import { useAppActions } from "@/stores/appActions";
 import Home from "./components/Home.vue";
 
-const { getCmbData } = useLoginEffect() // 登录hooks
-
-const appStore = useAppStore(),
-  appActions = useAppActions(),
-  { token } = storeToRefs(appStore)
+const { token } = storeToRefs(useAppStore()),
+  { SET_LOGIN_STATE } = useAppActions(),
+  { getCmbData } = useLoginEffect() // 登录hooks
 
 const showPage = ref<boolean>(false); // 页面的展示状态
 const refLoading = ref<ComponentInstance['BaseLoading']>()
 const isPreProduction = computed<boolean>(() => import.meta.env.VITE_APP_PRE_PRODUCTION === 'true') // 预生产
 const isDevEnv = computed<boolean>(() => import.meta.env.VITE_NODE_ENV === 'development') // 本地
-const isMpbankEnv = computed<boolean>(() => navigator.userAgent.toLowerCase().match(/MPBank/i)?.[0] === 'mpbank') // 招行
+const isCmblifeEnv = computed<boolean>(() => /cmblife/.test(navigator.userAgent.toLowerCase())) // 掌上生活
 
 // 初始化
 const hanleInit = () => {
@@ -45,7 +43,7 @@ const createPromiseAll = () => {
     .then(result => {
       setTimeout(() => {
         console.log('Init', result)
-        appActions.SET_LOGIN_STATE({ key: 'isLoading', val: true })
+        SET_LOGIN_STATE({ key: 'isLoading', val: true })
       }, 300)
     })
     .catch(err => {
@@ -62,7 +60,7 @@ const createWechatPromiseAll = () => {
     .then(result => {
       setTimeout(() => {
         console.log('Wechat Init', result)
-        appActions.SET_LOGIN_STATE({ key: 'isLoading', val: true })
+        SET_LOGIN_STATE({ key: 'isLoading', val: true })
       }, 300)
     })
     .catch(err => {
@@ -79,10 +77,9 @@ watchEffect(() => {
       createPromiseAll()
     })
   } else {
-    if (isMpbankEnv || isDevEnv) {
+    if (isCmblifeEnv || isDevEnv) {
       setTimeout(() => {
         token.value = 'test-token=123456'
-        // appActions.SET_TOKEN('test-token=123456')
       }, 1000)
       // getCmbData() // cmblift登录
     } else {
