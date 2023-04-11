@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2023-03-17 09:30:38
  * @LastEditors: dushuai
- * @LastEditTime: 2023-04-10 16:59:32
+ * @LastEditTime: 2023-04-11 14:28:38
  * @description: 框架说明
 -->
 # 项目名称
@@ -13,6 +13,24 @@
 2. 需求文档：
 3. 需求规格说明：
 4. 蓝湖设计图：
+
+## 命令
+
+#### 安装
+```
+pnpm install
+```
+
+#### 开发环境运行
+```
+npm run dev
+```
+
+#### 打包
+打包命令请查看[这里](#运行以及打包)
+
+#### 环境参数
+全部参数变量请查看[这里](#环境配置参数)
 
 ## 提示
 
@@ -44,6 +62,7 @@
 │         └─popBase.vue           弹窗组件使用实例
 │  └─enum                         枚举文件目录
 │  └─hooks                        抽离hooks的文件目录
+│     └─useCmblife                抽离cmblife常用挂载方法
 │     └─useLogin                  抽离登录方法
 │     └─usePopups                 弹窗统一管理方法的hooks
 │     └─useToast                  toast提示的hooks
@@ -54,7 +73,7 @@
 |     └─popups.ts                 存放弹窗状态state的文件 按规则使用即可,可不更改
 │  └─typings                      ts类型定义文件目录
 |     └─app.d.ts                  app内数据类型
-|     └─cmb.d.ts                  cmb request/response的数据结构类型定义文件
+|     └─cmblife.d.ts              cmblife request/response的数据结构类型定义文件
 |     └─env.d.ts                  自定义npm上没有声明文件包的声明文件
 |     └─global.d.ts               window上的数据类型
 |     └─request.d.ts              请求的request的数据结构类型定义文件
@@ -87,7 +106,44 @@
 └─vitest.config.ts
 ```
 
-## 环境打包等命令
+## 环境配置参数
+
+```
+#当前环境
+VITE_NODE_ENV = "production"
+
+#判断打包逻辑
+VITE_APP_ENV = "production"
+
+#判断预生产（设置预生产顶部跑马灯）
+VITE_APP_PRE_PRODUCTION = "false"
+
+#生产环境不需要log
+VITE_APP_LOG = "true"
+
+#资源路径
+VITE_APP_RESOURCE_URL = "xxx"
+
+#请求接口路径
+VITE_APP_BASE_URL = "xxx"
+
+#是否开启Vconsole（生产环境关闭）
+VITE_APP_VCONSOLE_ABLED = "false"
+
+#降级页
+VITE_APP_ERROR_PAGE_URL = "xxx"
+
+#App卡券
+VITE_APP_CARD_URL = "xxx"
+
+#分享id
+VITE_APP_SHARE_ID = "xxx"
+
+#H5标题
+VITE_APP_TITLE = "项目名称"
+```
+
+## 运行以及打包
 
 npm run dev    本地启动项目
 
