@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2023-04-10 15:55:41
  * @LastEditors: dushuai
- * @LastEditTime: 2023-04-11 11:10:05
+ * @LastEditTime: 2023-04-18 18:01:13
  * @description: Window
  */
 interface Window {
@@ -13,5 +13,13 @@ interface Window {
   cmbShareCallback: Function,
 
   /** 返回回调 */
-  retainPopCallback: Function
+  retainPopCallback: Function,
+
+  mozRequestAnimationFrame: Function,
+
+  webkitRequestAnimationFrame: Function,
+
+  msRequestAnimationFrame: Function,
+
+  mozCancelAnimationFrame: Function
 }
